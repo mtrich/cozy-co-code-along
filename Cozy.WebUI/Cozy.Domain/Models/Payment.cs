@@ -10,6 +10,7 @@ namespace Cozy.Domain.Models
         public DateTime PaidOn { get; set; }
         public double Amount { get; set; }
 
+        //Foreign Keys
         public string TenantId { get; set; }
         public Tenant Tenant { get; set; }
 
