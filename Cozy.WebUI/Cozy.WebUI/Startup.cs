@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cozy.Data.Context;
+using Cozy.Data.Implementation.EFCore;
+using Cozy.Data.Implementation.Mock;
+using Cozy.Data.Interfaces;
+using Cozy.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +21,14 @@ namespace Cozy.WebUI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // Repository Layer
+            services.AddScoped<IHomeRepository, EFCoreHomeRepository>();
+            //whenever you find a Dependency on IHomeRepository
+            // replace that with MockHomeRepository
+
+            // Service Layer
+            services.AddScoped<IHomeService, HomeService>();
+
             services.AddMvc();
         }
 
