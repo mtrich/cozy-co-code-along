@@ -8,7 +8,7 @@ namespace Cozy.Data.Interfaces
     interface ILandlordRepository
     {
         //Read
-        Landlord GetById(int LandlordId);
+        Landlord GetById(string landlordId);
 
         // Create
         Landlord Create(Landlord newLandlord);
@@ -17,6 +17,6 @@ namespace Cozy.Data.Interfaces
         Landlord Update(Landlord updatedLandlord);
 
         //Delete
-        bool DeleteById(int LandlordId);
+        bool DeleteById(string landlordId);
     }
 }

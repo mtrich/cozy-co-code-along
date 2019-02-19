@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Cozy.Data.Interfaces
 {
-    interface ILeaseRepository
+    public interface ILeaseRepository
     {
         //Read
         Lease GetById(int leaseId);
@@ -16,7 +16,7 @@ namespace Cozy.Data.Interfaces
         Lease Create(Lease newLease);
 
         //Update
-        Lease Update(Lease UpdatedLease);
+        Lease Update(Lease updatedLease);
 
         //Delete
         bool DeleteById(int leaseId);

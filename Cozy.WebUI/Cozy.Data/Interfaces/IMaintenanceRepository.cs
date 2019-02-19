@@ -9,8 +9,8 @@ namespace Cozy.Data.Interfaces
     {
         //Read
         Maintenance GetById(int maintenanceId);
-        ICollection<Maintenance> GetByHomeId(int HomeId);
-        ICollection<Maintenance> GetByTenantId(string TenantId);
+        ICollection<Maintenance> GetByHomeId(int homeId);
+        ICollection<Maintenance> GetByTenantId(string tenantId);
 
         // Create
         Maintenance Create(Maintenance newMaintenance);

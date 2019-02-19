@@ -8,7 +8,7 @@ namespace Cozy.Data.Interfaces
     interface IMaintenanceStatusRepository
     {
         //Read
-        MaintenanceStatus GetById(int MaintenanceStatusId);
+        MaintenanceStatus GetById(int maintenanceStatusId);
 
         // Create
         MaintenanceStatus Create(MaintenanceStatus newMaintenanceStatus);
@@ -17,6 +17,6 @@ namespace Cozy.Data.Interfaces
         MaintenanceStatus Update(MaintenanceStatus updatedMaintenanceStatus);
 
         //Delete
-        bool DeleteById(int MaintenanceStatusId);
+        bool DeleteById(int maintenanceStatusId);
     }
 }

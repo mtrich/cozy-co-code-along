@@ -8,15 +8,15 @@ namespace Cozy.Data.Interfaces
     interface ITenantRepository
     {
         //Read
-        Tenant GetById(string TenantId);
+        Tenant GetById(string tenantId);
 
         // Create
-        Tenant Create(Home newTenant);
+        Tenant Create(Tenant newTenant);
 
         //Update
         Tenant Update(Tenant updatedTenant);
 
         //Delete
-        bool DeleteById(int TenantId);
+        bool DeleteById(string tenantId);
     }
 }

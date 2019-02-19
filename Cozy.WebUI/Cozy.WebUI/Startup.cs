@@ -22,12 +22,10 @@ namespace Cozy.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             // Repository Layer
-            services.AddScoped<IHomeRepository, EFCoreHomeRepository>();
-            //whenever you find a Dependency on IHomeRepository
-            // replace that with MockHomeRepository
-
+            GetDependencyResolvedForRepositoryLayer(services);
+            //GetDependencyResolvedForEFCoreLayer(services);
             // Service Layer
-            services.AddScoped<IHomeService, HomeService>();
+            GetDependencyResolvedForServiceLayer(services);
 
             services.AddMvc();
         }
@@ -43,9 +41,26 @@ namespace Cozy.WebUI
             app.UseStaticFiles();
 
             app.UseMvcWithDefaultRoute();
-            {
+        }
 
-            }
+        private void GetDependencyResolvedForRepositoryLayer(IServiceCollection services)
+        {
+            services.AddScoped<IHomeRepository, MockHomeRepository>();
+            services.AddScoped<ILeaseRepository, MockLeaseRepository>();
+        }
+
+        //private void GetDependencyResolvedForEFCoreLayer(IServiceCollection services)
+        //{
+        //    services.AddScoped<IHomeRepository, EFCoreHomeRepository>();
+        //    services.AddScoped<ILeaseRepository, EFCoreLeaseRepository>();
+        //}
+
+        private void GetDependencyResolvedForServiceLayer(IServiceCollection services)
+        {
+            services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<ILeaseService, LeaseService>();
         }
     }
+
+
 }
