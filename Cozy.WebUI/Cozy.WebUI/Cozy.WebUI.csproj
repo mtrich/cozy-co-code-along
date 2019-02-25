@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cozy.Data\Cozy.Data.csproj" />
+    <ProjectReference Include="..\Cozy.Service\Cozy.Service.csproj" />
   </ItemGroup>
 
 </Project>
