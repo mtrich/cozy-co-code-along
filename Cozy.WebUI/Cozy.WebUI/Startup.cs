@@ -6,10 +6,12 @@ using Cozy.Data.Context;
 using Cozy.Data.Implementation.EFCore;
 using Cozy.Data.Implementation.Mock;
 using Cozy.Data.Interfaces;
+using Cozy.Domain.Models;
 using Cozy.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,10 +24,15 @@ namespace Cozy.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             // Repository Layer
-            GetDependencyResolvedForRepositoryLayer(services);
-            //GetDependencyResolvedForEFCoreLayer(services);
+            //GetDependencyResolvedForRepositoryLayer(services);
+            GetDependencyResolvedForEFCoreLayer(services);
+
             // Service Layer
             GetDependencyResolvedForServiceLayer(services);
+
+            services.AddDbContext<CozyDbContext>();
+            services.AddIdentity<AppUser, IdentityRole>()
+                .AddEntityFrameworkStores<CozyDbContext>();
 
             services.AddMvc();
         }
@@ -37,8 +44,9 @@ namespace Cozy.WebUI
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseStaticFiles();
+
+            app.UseAuthentication(); // makes use of Identity
 
             app.UseMvcWithDefaultRoute();
         }
@@ -47,13 +55,15 @@ namespace Cozy.WebUI
         {
             services.AddScoped<IHomeRepository, MockHomeRepository>();
             services.AddScoped<ILeaseRepository, MockLeaseRepository>();
+            //services.AddScoped<IMaintenanceRepository, MockMaintenanceRepository>();
         }
 
-        //private void GetDependencyResolvedForEFCoreLayer(IServiceCollection services)
-        //{
-        //    services.AddScoped<IHomeRepository, EFCoreHomeRepository>();
-        //    services.AddScoped<ILeaseRepository, EFCoreLeaseRepository>();
-        //}
+        private void GetDependencyResolvedForEFCoreLayer(IServiceCollection services)
+        {
+            services.AddScoped<IHomeRepository, EFCoreHomeRepository>();
+            services.AddScoped<ILeaseRepository, EFCoreLeaseRepository>();
+            //services.AddScoped<IMaintenanceRepository, EFCoreMaintenanceRepository>();
+        }
 
         private void GetDependencyResolvedForServiceLayer(IServiceCollection services)
         {

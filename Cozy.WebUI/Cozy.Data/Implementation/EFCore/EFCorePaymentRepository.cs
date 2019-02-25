@@ -54,14 +54,6 @@ namespace Cozy.Data.Implementation.EFCore
             }
         }
 
-        public ICollection<Payment> GetByTenantId(string tenantId)
-        {
-            using (var context = new CozyDbContext())
-            {
-                return context.Payments.Where(p => p.TenantId == tenantId).ToList();
-            }
-        }
-
         public Payment Update(Payment updatedPayment)
         {
             using (var context = new CozyDbContext())

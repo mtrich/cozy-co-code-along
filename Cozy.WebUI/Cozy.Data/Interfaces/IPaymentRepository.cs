@@ -9,7 +9,6 @@ namespace Cozy.Data.Interfaces
     {
         //Read
         Payment GetById(int paymentId);
-        ICollection<Payment> GetByTenantId(string tenantId);
         ICollection<Payment> GetByLeaseId(int leaseId);
 
         // Create

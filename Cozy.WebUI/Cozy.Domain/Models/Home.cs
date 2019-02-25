@@ -14,6 +14,6 @@ namespace Cozy.Domain.Models
 
         // Foreign Key (FK)
         public string LandLordId { get; set; }
-        public Landlord Landlord { get; set; } // Navigation reference
+        public AppUser Landlord { get; set; }
     }
 }
