@@ -8,6 +8,7 @@ namespace Cozy.Service.Services
     {
         Home GetById(int homeId);
         ICollection<Home> GetByLandlordId(string landlordId);
+        Home Create(Home newHome);
     }
 
     public class HomeService : IHomeService
@@ -26,6 +27,11 @@ namespace Cozy.Service.Services
         public ICollection<Home> GetByLandlordId(string landlordId)
         {
             return _homeRepository.GetByLandlordId(landlordId);
+        }
+
+        public Home Create(Home newHome)
+        {
+            return _homeRepository.Create(newHome);
         }
     }
 }

@@ -34,6 +34,14 @@ namespace Cozy.WebUI
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<CozyDbContext>();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/SignIn"; // overide the default for /account login
+                options.AccessDeniedPath = "/Account/Unauthorized";
+            });
+
+            // Homework is to find out how to set differenct options for password
+
             services.AddMvc();
         }
 
@@ -70,6 +78,7 @@ namespace Cozy.WebUI
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<ILeaseService, LeaseService>();
         }
+        
     }
 
 
