@@ -23,7 +23,7 @@ namespace Cozy.Data.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
             // bad way of providing the connection string
-            optionBuilder.UseSqlServer(@"Server=(localdb)\projectsv13;Database=cozy;Trusted_Connection=True");
+            optionBuilder.UseSqlServer(Environment.GetEnvironmentVariable("SQLCONNSTR_ COZY_DB"));
         }
 
         //Seeding - populate db with initial data
